@@ -9,15 +9,18 @@ import AKAPNavbar from '../components/AKAPNavbar'
 const busClassPriceOptions = [
   {
     label: 'Eksekutif',
-    value: 300000
+    value: 300000,
+    imagePath: '/images/eksekutif.png'
   },
   {
     label: 'Bisnis',
-    value: 200000
+    value: 200000,
+    imagePath: '/images/bisnis.png'
   },
   {
     label: 'Ekonomi',
-    value: 100000
+    value: 100000,
+    imagePath: '/images/ekonomi.png'
   }
 ]
 
@@ -39,6 +42,7 @@ export default function Pesan () {
   const [jumlahPenumpang, setJumlahPenumpang] = useState(0)
   const [jumlahLansia, setJumlahLansia] = useState(0)
   const [hargaTiket, setHargaTiket] = useState(0)
+  const [busImagePath, setBusImagePath] = useState(null)
 
   function handleJumlahPenumpangChange (event) {
     setJumlahPenumpang(
@@ -54,6 +58,7 @@ export default function Pesan () {
 
   function handleBusClassChange (event) {
     setHargaTiket(parseInt(event.target.value))
+    setBusImagePath(event.target[event.target.selectedIndex].dataset.image)
   }
 
   function calculateTotal () {
@@ -97,7 +102,10 @@ export default function Pesan () {
               <Form.Label>Kelas penumpang</Form.Label>
               <Form.Select name='kelasPenumpang' onChange={handleBusClassChange}>
                 {busClassPriceOptions.map(option => (
-                  <option key={option.value} value={option.value}>{option.label}</option>
+                  <option
+                    key={option.value}
+                    value={option.value}
+                    data-image={option.imagePath}>{option.label}</option>
                 ))}
               </Form.Select>
             </Form.Group>
@@ -124,6 +132,8 @@ export default function Pesan () {
 
             <h4>Harga tiket: {`Rp${hargaTiket.toLocaleString('id')}`}</h4>
             <h4>Total: {`Rp${totalPrice.toLocaleString('id')}`}</h4>
+
+            {busImagePath ? <img src={busImagePath} alt='bus' /> : null}
 
             <Form.Group className='mb-3' controlId='setuju'>
               <Form.Check type='checkbox' label='Saya dan/atau rombongan telah membaca, memahami, dan setuju berdasarkan syarat dan ketentuan yang  telah ditetapkan' />
