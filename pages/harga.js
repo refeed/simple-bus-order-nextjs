@@ -17,7 +17,7 @@ function Price ({ description, price }) {
   )
 }
 
-export default function Home () {
+export default function Harga () {
   return (
     <>
       <Head>
@@ -33,10 +33,10 @@ export default function Home () {
           <h1 className='mt-4'>Daftar Bus</h1>
 
           <h2 className='mt-4'>Kelas Eksekutif</h2>
-          <Price description='test' price='Rp100.000' />
+          <Price description='test' price='Rp300.000' />
 
           <h2 className='mt-4'>Kelas Bisnis</h2>
-          <Price description='test' price='Rp100.000' />
+          <Price description='test' price='Rp200.000' />
 
           <h2 className='mt-4'>Kelas Ekonomi</h2>
           <Price description='test' price='Rp100.000' />
