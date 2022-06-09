@@ -2,20 +2,68 @@ import Head from "next/head";
 import Image from "next/image";
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
-import {useRef} from "react"
+import {useRef, useState} from "react"
 
 // import styles from "../styles/Home.module.css";
 import AKAPNavbar from "../components/AKAPNavbar";
 
 
+const busClassPriceOptions = [
+  {
+    label: "Eksekutif",
+    value: 300000
+  },
+  {
+    label: "Bisnis",
+    value: 200000
+  },
+  {
+    label: "Ekonomi",
+    value: 100000
+  }
+]
+
+function convertPenumpangInputToInt(value) {
+  if (isNaN(value) || value === "") {
+    return 0
+  }
+  const num = parseInt(value)
+
+  if (num < 0) {
+    return 0
+  }
+  return num
+}
 
 export default function Pesan() {
-  const formRef = useRef()
+  const jumlahPenumpangRef = useRef()
+  const jumlahLansiaRef = useRef()
+  const [jumlahPenumpang, setJumlahPenumpang] = useState(0)
+  const [jumlahLansia, setJumlahLansia] = useState(0)
+  const [hargaTiket, setHargaTiket] = useState(0)
 
-  function handleSubmit(event) {
-    console.log(formRef)
+  function handleJumlahPenumpangChange(event) {
+    setJumlahPenumpang(
+      convertPenumpangInputToInt(jumlahPenumpangRef.current.value))
     event.preventDefault()
   }
+
+  function handleJumlahLansiaChange(event) {
+    setJumlahLansia(
+      convertPenumpangInputToInt(jumlahLansiaRef.current.value))
+    event.preventDefault()
+  }
+
+  function handleBusClassChange(event) {
+    setHargaTiket(parseInt(event.target.value))
+  }
+
+  function calculateTotal() {
+    const lansiaTicketPrice = 0.9 * hargaTiket
+    return jumlahPenumpang * hargaTiket + jumlahLansia * lansiaTicketPrice
+  }
+
+  const totalPrice = calculateTotal()
 
   return (
     <>
@@ -31,7 +79,7 @@ export default function Pesan() {
         <main>
           <h1 className="mt-4">Formulir Pemesanan</h1>
 
-          <Form method="POST" action="/api/submitPesan" ref={formRef}>
+          <Form method="POST" action="/api/submitPesan">
           <Form.Group className="mb-3" controlId="namaLengkap">
               <Form.Label>Nama lengkap</Form.Label>
               <Form.Control name="namaLengkap"/>
@@ -48,8 +96,12 @@ export default function Pesan() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="kelasPenumpang">
-              <Form.Label>Kelas penumpang (DROPDOWN)</Form.Label>
-              <Form.Control name="kelasPenumpang"/>
+              <Form.Label>Kelas penumpang</Form.Label>
+              <Form.Select name="kelasPenumpang" onChange={handleBusClassChange}>
+                {busClassPriceOptions.map(option => (
+                  <option key={option.value} value={option.value}>{option.label}</option>
+                ))}
+              </Form.Select>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="tanggalKeberangkatan">
@@ -59,7 +111,7 @@ export default function Pesan() {
 
             <Form.Group className="mb-3" controlId="jumlahPenumpang">
               <Form.Label>Jumlah penumpang</Form.Label>
-              <Form.Control name="jumlahPenumpang"/>
+              <Form.Control name="jumlahPenumpang" ref={jumlahPenumpangRef} onChange={handleJumlahPenumpangChange}/>
               <Form.Text className="text-muted">
                 {"Bukan lansia (Usia < 60)"}
               </Form.Text>
@@ -67,8 +119,13 @@ export default function Pesan() {
 
             <Form.Group className="mb-3" controlId="jumlahLansia">
               <Form.Label>Jumlah lansia</Form.Label>
-              <Form.Control name="jumlahLansia"/>
+              <Form.Control name="jumlahLansia" ref={jumlahLansiaRef} onChange={handleJumlahLansiaChange}/>
             </Form.Group>
+            <input type="hidden" name="hargaTiket" value={hargaTiket}></input>
+            <input type="hidden" name="totalHarga" value={totalPrice}></input>
+
+            <h4>Harga tiket: {`Rp${hargaTiket.toLocaleString("id")}`}</h4>
+            <h4>Total: {`Rp${totalPrice.toLocaleString("id")}`}</h4>
 
             <Form.Group className="mb-3" controlId="setuju">
               <Form.Check type="checkbox" label="Saya dan/atau rombongan telah membaca, memahami, dan setuju berdasarkan syarat dan ketentuan yang  telah ditetapkan" />
