@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import AKAPNavbar from '../components/AKAPNavbar'
 
-function BusArmadaInterior ({ armadaDesc, interiorDesc }) {
+function BusArmadaInterior ({ armadaDesc, interiorDesc, armadaImgPath, interiorImgPath }) {
   return (
     <div className='card-group'>
       <div className='card'>
-        <img className='card-img-top' src='/images/eksekutif.png' alt='Card image cap' />
+        <img className='card-img-top' src={armadaImgPath} alt='Card image cap' />
         <div className='card-body'>
           <h5 className='card-title'>Armada</h5>
           <p className='card-text'>
@@ -14,7 +14,7 @@ function BusArmadaInterior ({ armadaDesc, interiorDesc }) {
         </div>
       </div>
       <div className='card'>
-        <img className='card-img-top' src='/images/eksekutif.png' alt='Card image cap' />
+        <img className='card-img-top' src={interiorImgPath} alt='Card image cap' />
         <div className='card-body'>
           <h5 className='card-title'>Interior</h5>
           <p className='card-text'>
@@ -42,14 +42,25 @@ export default function Home () {
           <h1 className='mt-4'>Daftar Bus</h1>
 
           <h2 className='mt-4'>Kelas Eksekutif</h2>
-          <BusArmadaInterior armadaDesc='test' interiorDesc='tset' />
+          <BusArmadaInterior
+            armadaImgPath={'/images/eksekutif.png'}
+            interiorImgPath={'/images/eksekutif-interior.png'}
+            armadaDesc='Kelas ternyaman untuk orang-orang yang ingin berkeliling di sekitar kota. Bus ini memiliki kapasitas penumpang maksimal sebanyak 40 orang.'
+            interiorDesc='Interior premium' />
 
           <h2 className='mt-4'>Kelas Bisnis</h2>
-          <BusArmadaInterior armadaDesc='test' interiorDesc='tset' />
+          <BusArmadaInterior
+            armadaImgPath={'/images/bisnis.png'}
+            interiorImgPath={'/images/bisnis-interior.png'}
+            armadaDesc='Kelas ternyaman untuk orang-orang yang ingin berkeliling di sekitar kota. Bus ini memiliki kapasitas penumpang maksimal sebanyak 40 orang.'
+            interiorDesc='Interior premium' />
 
           <h2 className='mt-4'>Kelas Ekonomi</h2>
-          <BusArmadaInterior armadaDesc='test' interiorDesc='tset' />
-
+          <BusArmadaInterior
+            armadaImgPath={'/images/ekonomi.png'}
+            interiorImgPath={'/images/ekonomi-interior.png'}
+            armadaDesc='Kelas ternyaman untuk orang-orang yang ingin berkeliling di sekitar kota. Bus ini memiliki kapasitas penumpang maksimal sebanyak 40 orang.'
+            interiorDesc='Interior premium' />
         </main>
       </div>
     </>
