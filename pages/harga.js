@@ -3,25 +3,16 @@ import Image from "next/image";
 // import styles from "../styles/Home.module.css";
 import AKAPNavbar from "../components/AKAPNavbar"
 
-function BusArmadaInterior({ armadaDesc, interiorDesc }) {
+function Price({ description, price }) {
   return (
     <div className="card-group">
-      <div className="card">
-        <img className="card-img-top" src="..." alt="Card image cap"></img>
+      <div className="card flex-row">
+        <img className="w-25" src="..." alt="Card image cap"></img>
         <div className="card-body">
-          <h5 className="card-title">Armada</h5>
           <p className="card-text">
-            {armadaDesc}
+            {description}
           </p>
-        </div>
-      </div>
-      <div className="card">
-        <img className="card-img-top" src="..." alt="Card image cap"></img>
-        <div className="card-body">
-          <h5 className="card-title">Interior</h5>
-          <p className="card-text">
-            {interiorDesc}
-          </p>
+          <h5 className="card-title">{price}</h5>
         </div>
       </div>
     </div>
@@ -44,13 +35,13 @@ export default function Home() {
           <h1 className="mt-4">Daftar Bus</h1>
 
           <h2 className="mt-4">Kelas Eksekutif</h2>
-          <BusArmadaInterior armadaDesc="test" interiorDesc="tset" />
+          <Price description="test" price="Rp100.000" />
 
           <h2 className="mt-4">Kelas Bisnis</h2>
-          <BusArmadaInterior armadaDesc="test" interiorDesc="tset" />
+          <Price description="test" price="Rp100.000" />
 
           <h2 className="mt-4">Kelas Ekonomi</h2>
-          <BusArmadaInterior armadaDesc="test" interiorDesc="tset" />
+          <Price description="test" price="Rp100.000" />
 
         </main>
       </div>
