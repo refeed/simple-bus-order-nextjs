@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import AKAPNavbar from '../components/AKAPNavbar'
 
-function Price ({ description, price }) {
+function Price ({ description, price, imagePath }) {
   return (
     <div className='card-group'>
       <div className='card flex-row'>
-        <img className='w-25' src='/images/eksekutif.png' alt='Card image cap' />
+        <img className='w-25' src={ imagePath } alt='Card image cap' />
         <div className='card-body'>
           <p className='card-text'>
             {description}
@@ -33,14 +33,25 @@ export default function Harga () {
           <h1 className='mt-4'>Daftar Bus</h1>
 
           <h2 className='mt-4'>Kelas Eksekutif</h2>
-          <Price description='test' price='Rp300.000' />
+          <Price
+            description='Fasilitas bus AKAP kelas eksekutif kini semakin mewah, bahkan ada yang memiliki bangku pijat dan layanan makan layaknya first class.'
+            price='Rp300.000'
+            imagePath={'/images/eksekutif.png'}
+            />
 
           <h2 className='mt-4'>Kelas Bisnis</h2>
-          <Price description='test' price='Rp200.000' />
+          <Price
+            description='Fasilitas bus AKAP kelas eksekutif kini semakin mewah, bahkan ada yang memiliki bangku pijat dan layanan makan layaknya first class.'
+            price='Rp200.000'
+            imagePath={'/images/bisnis.png'}
+            />
 
           <h2 className='mt-4'>Kelas Ekonomi</h2>
-          <Price description='test' price='Rp100.000' />
-
+          <Price
+            description='Fasilitas bus AKAP kelas eksekutif kini semakin mewah, bahkan ada yang memiliki bangku pijat dan layanan makan layaknya first class.'
+            price='Rp100.000'
+            imagePath={'/images/ekonomi.png'}
+            />
         </main>
       </div>
     </>
