@@ -7,7 +7,7 @@ function BusArmadaInterior({ armadaDesc, interiorDesc }) {
   return (
     <div className="card-group">
       <div className="card">
-        <img className="card-img-top" src="..." alt="Card image cap"></img>
+        <img className="card-img-top" src="/images/eksekutif.png" alt="Card image cap"></img>
         <div className="card-body">
           <h5 className="card-title">Armada</h5>
           <p className="card-text">
@@ -16,7 +16,7 @@ function BusArmadaInterior({ armadaDesc, interiorDesc }) {
         </div>
       </div>
       <div className="card">
-        <img className="card-img-top" src="..." alt="Card image cap"></img>
+        <img className="card-img-top" src="/images/eksekutif.png" alt="Card image cap"></img>
         <div className="card-body">
           <h5 className="card-title">Interior</h5>
           <p className="card-text">

@@ -7,7 +7,7 @@ function Price({ description, price }) {
   return (
     <div className="card-group">
       <div className="card flex-row">
-        <img className="w-25" src="..." alt="Card image cap"></img>
+        <img className="w-25" src="/images/eksekutif.png" alt="Card image cap"></img>
         <div className="card-body">
           <p className="card-text">
             {description}
